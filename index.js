@@ -4,6 +4,11 @@ import {ChatGPTAPI} from 'chatgpt'
 
 const port = process.env.PORT || 4000;
 const app = express();
+
+let disableDebug = true
+app.use(express.static('public'))
+app.use(express.json())
+
 app.all('*', (_, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method')
