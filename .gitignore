@@ -27,6 +27,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+index.mjs
 
 # Environment variables files
 /service/.env
