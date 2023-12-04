@@ -1,6 +1,6 @@
 // const express = require("express");
 import express from 'express'
-import {ChatGPTAPI}  from 'chatgpt'
+import {ChatGPTAPI} from 'chatgpt'
 
 const port = process.env.PORT || 4000;
 const app = express();
@@ -123,7 +123,10 @@ async function chatReplyProcess(options) {
 }
 
 app.get('/hello-world', (request, response) => {
-    response.send('Hello World!');
+    const OPENAI_API_KEY = process.env.OPENAI_API_KEY
+    const OPENAI_API_BASE_URL = process.env.OPENAI_API_BASE_URL
+    const OPENAI_API_MODEL = process.env.OPENAI_API_MODEL
+    response.send(`OPENAI_API_KEY: ${OPENAI_API_KEY} \n OPENAI_API_BASE_URL: ${OPENAI_API_BASE_URL} \n OPENAI_API_MODEL: ${OPENAI_API_MODEL}`);
 });
 
 app.post('/api/session', async (req, res) => {
@@ -173,4 +176,4 @@ app.listen(port, () => {
 });
 
 // Export the Express API
-export default  app
+export default app
