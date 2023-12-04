@@ -1,17 +1,16 @@
 // const express = require("express");
 import express from 'express'
 import {ChatGPTAPI} from 'chatgpt'
-import cors from 'cors'
 
 const port = process.env.PORT || 4000;
 const app = express();
-// app.all('*', (_, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*')
-//     res.header('Access-Control-Allow-Headers', 'Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method')
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, PUT, DELETE')
-//     res.header('Allow', 'GET, POST, PATCH, OPTIONS, PUT, DELETE')
-//     next();
-// })
+app.all('*', (_, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Authorization,X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PATCH, PUT, DELETE')
+    res.header('Allow', 'GET, POST, PATCH, OPTIONS, PUT, DELETE')
+    next();
+})
 
 
 const ErrorCodeMessage = {
@@ -171,12 +170,6 @@ app.post('/api/chat-process', async (req, res) => {
     }
 })
 
-app.use(cors({
-    credentials: true,
-    preflightContinue: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    origin: true
-}))
 
 app.options("*", (req, res) => {
     res.sendStatus(200);
