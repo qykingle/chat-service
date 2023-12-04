@@ -126,7 +126,7 @@ app.get('/hello-world', (request, response) => {
     response.send('Hello World!');
 });
 
-app.post('/session', async (req, res) => {
+app.post('/api/session', async (req, res) => {
     try {
         res.send({status: 'Success', message: '', data: {auth: true, model: 'ChatGPTAPI'}})
     } catch (error) {
@@ -134,7 +134,7 @@ app.post('/session', async (req, res) => {
     }
 })
 
-app.post('/verify', async (req, res) => {
+app.post('/api/verify', async (req, res) => {
     try {
         const {token} = req.body
         if (!token) throw new Error('Secret key is empty')
@@ -148,7 +148,7 @@ app.post('/verify', async (req, res) => {
 })
 
 
-app.post('/chat-process', async (req, res) => {
+app.post('/api/chat-process', async (req, res) => {
     res.setHeader('Content-type', 'application/octet-stream')
 
     try {
